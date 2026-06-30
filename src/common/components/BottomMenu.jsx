@@ -95,6 +95,9 @@ const BottomMenu = () => {
 
   const handleSelection = (event, value) => {
     switch (value) {
+  case 'dashboard':
+        navigate('/dashboard');
+        break; 
       case 'map':
         navigate('/');
         break;
