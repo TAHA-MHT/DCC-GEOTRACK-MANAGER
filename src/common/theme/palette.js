@@ -1,6 +1,6 @@
 import { grey } from '@mui/material/colors';
 
-export default (server, darkMode) => ({
+export default (darkMode) => ({
   mode: darkMode ? 'dark' : 'light',
   background: {
     default: darkMode ? grey[900] : '#FFFFFF',
