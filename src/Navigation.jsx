@@ -2,6 +2,7 @@ import { lazy, Suspense } from 'react';
 import { Route, Routes, useSearchParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import MainPage from './main/MainPage';
+const DashboardPage = lazy(() => import('./main/DashboardPage'));
 import App from './App';
 import Loader from './common/components/Loader';
 import { useAsyncTask } from './reactHelper';
@@ -127,6 +128,7 @@ const Navigation = () => {
         <Route path="/reset-password" element={<ResetPasswordPage />} />
         <Route path="/change-server" element={<ChangeServerPage />} />
         <Route path="/" element={<App />}>
+          <Route path="dashboard" element={<DashboardPage />} />
           <Route index element={<MainPage />} />
 
           <Route path="position/:id" element={<PositionPage />} />
