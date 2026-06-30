@@ -2,8 +2,9 @@ import React, { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { Paper, Typography } from '@mui/material';
 import { makeStyles } from 'tss-react/mui';
-import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import { useTranslation } from '../common/components/LocalizationProvider';
+import Logo from '../resources/images/logo.svg?react';
 
 const useStyles = makeStyles()((theme) => ({
   page: {
@@ -34,6 +35,17 @@ const useStyles = makeStyles()((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  donutLogo: {
+    width: '50%',
+    height: 'auto',
+    marginBottom: theme.spacing(0.5),
+  },
+  donutBrand: {
+    color: theme.palette.primary.main,
+    fontWeight: 'bold',
+    fontSize: '0.7rem',
+    textAlign: 'center',
+  },
   grid: {
     display: 'grid',
     gridTemplateColumns: 'repeat(3, 1fr)',
@@ -41,22 +53,45 @@ const useStyles = makeStyles()((theme) => ({
     marginTop: theme.spacing(2),
   },
   card: {
+    position: 'relative',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     padding: theme.spacing(2),
-    borderRadius: theme.spacing(1),
+    borderRadius: theme.spacing(1.5),
     color: '#fff',
+  },
+  badge: {
+    position: 'absolute',
+    top: -8,
+    right: -8,
+    backgroundColor: '#fff',
+    borderRadius: '50%',
+    width: 26,
+    height: 26,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: 13,
+    fontWeight: 'bold',
   },
   cardIcon: {
     fontSize: 32,
-    marginBottom: theme.spacing(1),
+  },
+  cardItem: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  cardLabel: {
+    marginTop: theme.spacing(1),
+    textAlign: 'center',
   },
 }));
 
 const CATEGORY_COLORS = {
   stopped: '#e74c3c',
-  moving: '#27ae60',
+  moving: '#1565C0',
   idle: '#f39c12',
   offline: '#95a5a6',
   notConnected: '#3498db',
@@ -129,17 +164,24 @@ const DashboardPage = () => {
       <Paper elevation={3} className={classes.donutWrapper}>
         <div className={classes.donut} style={{ background: gradient }}>
           <div className={classes.donutInner}>
-            <Typography variant="h4">{total}</Typography>
-            <Typography variant="body2" color="textSecondary">Total</Typography>
+            <Logo className={classes.donutLogo} />
+            <Typography className={classes.donutBrand}>DCC GEOTRACK</Typography>
           </div>
         </div>
       </Paper>
+      <Typography variant="h5" align="center" sx={{ marginBottom: 2 }}>
+        Total: {total}
+      </Typography>
       <div className={classes.grid}>
         {cards.map(({ key, label }) => (
-          <div key={key} className={classes.card} style={{ backgroundColor: CATEGORY_COLORS[key] }}>
-            <LocalShippingIcon className={classes.cardIcon} />
-            <Typography variant="h6">{counts[key]}</Typography>
-            <Typography variant="caption">{label}</Typography>
+          <div key={key} className={classes.cardItem}>
+            <div className={classes.card} style={{ backgroundColor: CATEGORY_COLORS[key] }}>
+              <div className={classes.badge} style={{ color: CATEGORY_COLORS[key] }}>
+                {counts[key]}
+              </div>
+              <DirectionsCarIcon className={classes.cardIcon} />
+            </div>
+            <Typography variant="body2" className={classes.cardLabel}>{label}</Typography>
           </div>
         ))}
       </div>
