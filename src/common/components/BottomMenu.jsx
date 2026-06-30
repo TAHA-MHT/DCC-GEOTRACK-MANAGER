@@ -42,8 +42,9 @@ const BottomMenu = () => {
     if (location.pathname === `/settings/user/${user.id}`) {
       return 'account';
     }
-    if (location.pathname === '/dashboard') {
-      return 'dashboard';
+    if (location.pathname === '/') {
+  return 'dashboard';
+    }
     }
     if (location.pathname.startsWith('/settings')) {
       return 'settings';
@@ -51,8 +52,10 @@ const BottomMenu = () => {
     if (location.pathname.startsWith('/reports')) {
       return 'reports';
     }
-    if (location.pathname === '/') {
-      return 'map';
+    if (location.pathname === '/map') {
+  return 'map';
+    }
+      
     }
     return null;
   };
