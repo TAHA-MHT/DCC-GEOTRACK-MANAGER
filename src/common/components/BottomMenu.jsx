@@ -100,10 +100,10 @@ const BottomMenu = () => {
   const handleSelection = (event, value) => {
     switch (value) {
   case 'dashboard':
-        navigate('/dashboard');
+        navigate('/');
         break; 
       case 'map':
-        navigate('/');
+        navigate('/map');
         break;
       case 'reports': {
         let id = selectedDeviceId;
