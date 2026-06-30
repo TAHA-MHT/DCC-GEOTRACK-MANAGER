@@ -41,6 +41,9 @@ const BottomMenu = () => {
     if (location.pathname === `/settings/user/${user.id}`) {
       return 'account';
     }
+    if (location.pathname === '/dashboard') {
+      return 'dashboard';
+    }
     if (location.pathname.startsWith('/settings')) {
       return 'settings';
     }
