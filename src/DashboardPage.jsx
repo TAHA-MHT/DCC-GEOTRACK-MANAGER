@@ -86,6 +86,7 @@ const useStyles = makeStyles()((theme) => ({
   cardLabel: {
     marginTop: theme.spacing(1),
     textAlign: 'center',
+    color: '#333',
   },
 }));
 
