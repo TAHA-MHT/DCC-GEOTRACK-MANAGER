@@ -38,20 +38,23 @@ const BottomMenu = () => {
   const [anchorEl, setAnchorEl] = useState(null);
 
   const currentSelection = () => {
-    if (location.pathname === `/settings/user/${user.id}`) {
-      return 'account';
-    }
-    if (location.pathname.startsWith('/settings')) {
-      return 'settings';
-    }
-    if (location.pathname.startsWith('/reports')) {
-      return 'reports';
-    }
-    import DashboardIcon from '@mui/icons-material/Dashboard';
-      
-    }
-    return null;
-  };
+      if (location.pathname === `/settings/user/${user.id}`) {
+        return 'account';
+      }
+      if (location.pathname === '/') {
+        return 'dashboard';
+      }
+      if (location.pathname.startsWith('/settings')) {
+        return 'settings';
+      }
+      if (location.pathname.startsWith('/reports')) {
+        return 'reports';
+      }
+      if (location.pathname === '/map') {
+        return 'map';
+      }
+      return null;
+    };
 
   const handleAccount = () => {
     setAnchorEl(null);
