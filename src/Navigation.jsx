@@ -2,7 +2,7 @@ import { lazy, Suspense } from 'react';
 import { Route, Routes, useSearchParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import MainPage from './main/MainPage';
-const DashboardPage = lazy(() => import('./main/DashboardPage'));
+const DashboardPage = lazy(() => import('./DashboardPage'));
 import App from './App';
 import Loader from './common/components/Loader';
 import { useAsyncTask } from './reactHelper';
