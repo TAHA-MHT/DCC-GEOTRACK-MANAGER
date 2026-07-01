@@ -4,7 +4,7 @@ import { Paper, Typography } from '@mui/material';
 import { makeStyles } from 'tss-react/mui';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import { useTranslation } from '../common/components/LocalizationProvider';
-import Logo from '../resources/images/logo.svg?react';
+
 
 const useStyles = makeStyles()((theme) => ({
   page: {
@@ -164,7 +164,7 @@ const DashboardPage = () => {
       <Paper elevation={3} className={classes.donutWrapper}>
         <div className={classes.donut} style={{ background: gradient }}>
           <div className={classes.donutInner}>
-            <Logo className={classes.donutLogo} />
+            
             <Typography className={classes.donutBrand}>DCC GEOTRACK</Typography>
           </div>
         </div>
