@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Paper, Typography } from '@mui/material';
 import { makeStyles } from 'tss-react/mui';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
-import { useTranslation } from '../common/components/LocalizationProvider';
+import { useTranslation } from './common/components/LocalizationProvider';
 
 
 const useStyles = makeStyles()((theme) => ({
