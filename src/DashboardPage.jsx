@@ -11,6 +11,7 @@ const useStyles = makeStyles()((theme) => ({
     padding: theme.spacing(2),
     overflow: 'auto',
     height: '100%',
+    backgroundColor: '#fff',
   },
   donutWrapper: {
     display: 'flex',
