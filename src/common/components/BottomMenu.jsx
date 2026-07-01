@@ -47,8 +47,8 @@ const BottomMenu = () => {
     if (location.pathname.startsWith('/reports')) {
       return 'reports';
     }
-    if (location.pathname === '/') {
-      return 'map';
+    import DashboardIcon from '@mui/icons-material/Dashboard';
+      
     }
     return null;
   };
