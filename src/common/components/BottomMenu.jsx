@@ -16,7 +16,6 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import MapIcon from '@mui/icons-material/Map';
 import PersonIcon from '@mui/icons-material/Person';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
-import DashboardIcon from '@mui/icons-material/Dashboard';
 import { sessionActions } from '../../store';
 import { useTranslation } from './LocalizationProvider';
 import { useRestriction } from '../util/permissions';
@@ -38,23 +37,23 @@ const BottomMenu = () => {
   const [anchorEl, setAnchorEl] = useState(null);
 
   const currentSelection = () => {
-      if (location.pathname === `/settings/user/${user.id}`) {
-        return 'account';
-      }
-      if (location.pathname === '/') {
-        return 'dashboard';
-      }
-      if (location.pathname.startsWith('/settings')) {
-        return 'settings';
-      }
-      if (location.pathname.startsWith('/reports')) {
-        return 'reports';
-      }
-      if (location.pathname === '/map') {
-        return 'map';
-      }
-      return null;
-    };
+    if (location.pathname === `/settings/user/${user.id}`) {
+      return 'account';
+    }
+    if (location.pathname === '/') {
+      return 'dashboard';
+    }
+    if (location.pathname.startsWith('/settings')) {
+      return 'settings';
+    }
+    if (location.pathname.startsWith('/reports')) {
+      return 'reports';
+    }
+    if (location.pathname === '/map') {
+      return 'map';
+    }
+    return null;
+  };
 
   const handleAccount = () => {
     setAnchorEl(null);
@@ -161,7 +160,11 @@ const BottomMenu = () => {
             value="logout"
           />
         ) : (
-          <BottomNavigationAction label={t('settingsUser')} icon={<PersonIcon />} value="account" />
+          <BottomNavigationAction
+            label={t('settingsUser')}
+            icon={<PersonIcon />}
+            value="account"
+          />
         )}
       </BottomNavigation>
       <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={() => setAnchorEl(null)}>
