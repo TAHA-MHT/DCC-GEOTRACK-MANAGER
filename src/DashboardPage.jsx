@@ -187,7 +187,9 @@ const DashboardPage = () => {
               </div>
               <DirectionsCarIcon className={classes.cardIcon} />
             </div>
-            <Typography variant="body2" className={classes.cardLabel}>{label}</Typography>
+            <Typography variant="body2" className={classes.cardLabel}>
+           {label}
+          </Typography>
           </div>
         ))}
       </div>
