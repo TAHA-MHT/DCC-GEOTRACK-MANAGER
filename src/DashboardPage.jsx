@@ -91,7 +91,7 @@ const useStyles = makeStyles()((theme) => ({
 
 const CATEGORY_COLORS = {
   stopped: '#e74c3c',
-  moving: '#1565C0',
+  moving: '#43a047',
   idle: '#f39c12',
   offline: '#95a5a6',
   notConnected: '#3498db',
