@@ -161,7 +161,7 @@ const DashboardPage = () => {
 
   return (
     <div className={classes.page}>
-      <Paper elevation={3} className={classes.donutWrapper}>
+      <Paper elevation={3} className={classes.donutWrapper} style={{ backgroundColor: '#fff' }}>
         <div className={classes.donut} style={{ background: gradient }}>
           <div className={classes.donutInner}>
             
