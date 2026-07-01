@@ -170,7 +170,6 @@ const DashboardPage = () => {
       <Paper elevation={0} className={classes.donutWrapper} style={{ backgroundColor: '#fff' }}>
         <div className={classes.donut} style={{ background: gradient }}>
           <div className={classes.donutInner}>
-            
             <DirectionsCarIcon style={{ fontSize: 40, color: '#43a047', marginBottom: 4 }} />
           </div>
         </div>
@@ -188,8 +187,8 @@ const DashboardPage = () => {
               <DirectionsCarIcon className={classes.cardIcon} />
             </div>
             <Typography variant="body2" className={classes.cardLabel}>
-           {label}
-          </Typography>
+              {label}
+            </Typography>
           </div>
         ))}
       </div>
