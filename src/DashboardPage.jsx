@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { Paper, Typography } from '@mui/material';
 import { makeStyles } from 'tss-react/mui';
