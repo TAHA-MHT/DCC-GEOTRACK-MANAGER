@@ -169,7 +169,7 @@ const DashboardPage = () => {
           </div>
         </div>
       </Paper>
-      <Typography variant="h5" align="center" sx={{ marginBottom: 2 }}>
+      <Typography variant="h5" align="center" sx={{ marginBottom: 2, color: '#333' }}>
         Total: {total}
       </Typography>
       <div className={classes.grid}>
