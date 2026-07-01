@@ -127,7 +127,12 @@ const DashboardPage = () => {
 
   const counts = useMemo(() => {
     const result = {
-      stopped: 0, moving: 0, idle: 0, offline: 0, notConnected: 0, expired: 0,
+      stopped: 0,
+      moving: 0,
+      idle: 0,
+      offline: 0,
+      notConnected: 0,
+      expired: 0,
     };
     Object.values(devices).forEach((device) => {
       const category = categorize(device, positions[device.id]);
