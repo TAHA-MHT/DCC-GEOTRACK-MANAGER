@@ -5,7 +5,6 @@ import { makeStyles } from 'tss-react/mui';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import { useTranslation } from './common/components/LocalizationProvider';
 
-
 const useStyles = makeStyles()((theme) => ({
   page: {
     padding: theme.spacing(2),
@@ -30,7 +29,7 @@ const useStyles = makeStyles()((theme) => ({
     width: '70%',
     height: '70%',
     borderRadius: '50%',
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: '#fff',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
