@@ -77,6 +77,7 @@ const useStyles = makeStyles()((theme) => ({
   },
   cardIcon: {
     fontSize: 32,
+    filter: 'drop-shadow(0px 2px 2px rgba(0,0,0,0.35))',
   },
   cardItem: {
     display: 'flex',
