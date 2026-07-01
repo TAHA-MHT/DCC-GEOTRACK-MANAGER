@@ -165,7 +165,7 @@ const DashboardPage = () => {
         <div className={classes.donut} style={{ background: gradient }}>
           <div className={classes.donutInner}>
             
-            <Typography className={classes.donutBrand}>DCC GEOTRACK</Typography>
+            <DirectionsCarIcon style={{ fontSize: 40, color: '#43a047', marginBottom: 4 }} />
           </div>
         </div>
       </Paper>
