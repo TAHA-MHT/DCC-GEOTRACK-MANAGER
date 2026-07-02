@@ -171,7 +171,14 @@ const DashboardPage = () => {
       <Paper elevation={0} className={classes.donutWrapper} style={{ backgroundColor: '#fff' }}>
         <div className={classes.donut} style={{ background: gradient }}>
           <div className={classes.donutInner}>
-            <DirectionsCarIcon style={{ fontSize: 40, color: '#43a047', marginBottom: 4, filter: 'drop-shadow(0px 2px 2px rgba(0,0,0,0.35))' }} />
+           <DirectionsCarIcon
+        style={{
+          fontSize: 40,
+          color: '#43a047',
+          marginBottom: 4,
+          filter: 'drop-shadow(0px 2px 2px rgba(0,0,0,0.35))',
+       }}
+       />
           </div>
         </div>
       </Paper>
