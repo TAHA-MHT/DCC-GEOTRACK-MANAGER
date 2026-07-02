@@ -168,7 +168,6 @@ const DashboardPage = () => {
 
   const cards = [
     { key: 'stopped', label: t('deviceStatusStopped') || 'Stopped' },
-    <div className={classes.header}>DCC GEOTRACK</div>
     { key: 'moving', label: t('deviceStatusMoving') || 'Moving' },
     { key: 'idle', label: t('deviceStatusIdle') || 'Idle' },
     { key: 'offline', label: t('deviceStatusOffline') || 'Offline' },
@@ -177,7 +176,8 @@ const DashboardPage = () => {
   ];
 
   return (
-    <div className={classes.page}>
+      <div className={classes.page}>
+      <div className={classes.header}>DCC GEOTRACK</div>
       <Paper elevation={0} className={classes.donutWrapper} style={{ backgroundColor: '#fff' }}>
         <div className={classes.donut} style={{ background: gradient }}>
           <div className={classes.donutInner}>
