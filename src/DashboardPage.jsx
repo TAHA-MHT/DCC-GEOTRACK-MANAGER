@@ -12,6 +12,15 @@ const useStyles = makeStyles()((theme) => ({
     height: '100%',
     backgroundColor: '#fff',
   },
+  header: {
+    backgroundColor: '#0d47a1',
+    color: '#fff',
+    textAlign: 'center',
+    padding: theme.spacing(1.5),
+    fontWeight: 'bold',
+    fontSize: '1rem',
+    margin: theme.spacing(-2, -2, 2, -2),
+  },
   donutWrapper: {
     display: 'flex',
     justifyContent: 'center',
@@ -159,6 +168,7 @@ const DashboardPage = () => {
 
   const cards = [
     { key: 'stopped', label: t('deviceStatusStopped') || 'Stopped' },
+    <div className={classes.header}>DCC GEOTRACK</div>
     { key: 'moving', label: t('deviceStatusMoving') || 'Moving' },
     { key: 'idle', label: t('deviceStatusIdle') || 'Idle' },
     { key: 'offline', label: t('deviceStatusOffline') || 'Offline' },
