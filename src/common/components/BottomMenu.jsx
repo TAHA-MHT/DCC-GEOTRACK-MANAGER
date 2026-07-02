@@ -128,8 +128,17 @@ const BottomMenu = () => {
   };
 
   return (
-    <BottomNavigation value={currentSelection()} onChange={handleSelection} showLabels>
-      <BottomNavigation value={currentSelection()} onChange={handleSelection} showLabels>
+    <Paper square elevation={3} style={{ backgroundColor: '#0d47a1' }}>   
+  <BottomNavigation
+  value={currentSelection()}
+  onChange={handleSelection}
+  showLabels
+  sx={{
+    backgroundColor: 'transparent',
+    '& .MuiBottomNavigationAction-root': { color: '#bbdefb' },
+    '& .Mui-selected': { color: '#ffffff' },
+  }}
+  >
         <BottomNavigationAction
           label={t('mapTitle')}
           icon={
