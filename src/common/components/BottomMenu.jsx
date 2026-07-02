@@ -128,17 +128,17 @@ const BottomMenu = () => {
   };
 
   return (
-    <Paper square elevation={3} style={{ backgroundColor: '#0d47a1' }}>   
-  <BottomNavigation
-  value={currentSelection()}
-  onChange={handleSelection}
-  showLabels
-  sx={{
-    backgroundColor: 'transparent',
-    '& .MuiBottomNavigationAction-root': { color: '#bbdefb' },
-    '& .Mui-selected': { color: '#ffffff' },
-  }}
-  >
+    <Paper square elevation={3} style={{ backgroundColor: '#0d47a1' }}>
+      <BottomNavigation
+        value={currentSelection()}
+        onChange={handleSelection}
+        showLabels
+        sx={{
+          backgroundColor: 'transparent',
+          '& .MuiBottomNavigationAction-root': { color: '#bbdefb' },
+          '& .Mui-selected': { color: '#ffffff' },
+        }}
+      >
         <BottomNavigationAction
           label={t('mapTitle')}
           icon={
@@ -185,3 +185,4 @@ const BottomMenu = () => {
 };
 
 export default BottomMenu;
+
