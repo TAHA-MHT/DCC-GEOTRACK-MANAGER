@@ -25,9 +25,9 @@ import { makeStyles } from 'tss-react/mui';
 const useStyles = makeStyles()(() => ({
     card: {
     backgroundColor: '#ffffff',
-    borderRadius: 16,
+    borderRadius: 0,
     padding: 8,
-    margin: 16,
+    margin: 0,
     boxShadow: '0 2px 8px rgba(0,0,0,0.12)',
   },
 }));
