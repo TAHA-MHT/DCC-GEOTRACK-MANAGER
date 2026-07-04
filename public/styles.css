@@ -9,10 +9,10 @@ body {
 
 @media (prefers-color-scheme: dark) {
   body {
-    background: black;
+    background: white;
   }
 }
-
+  
 .root {
   display: flex;
   flex-direction: column;
