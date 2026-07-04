@@ -22,19 +22,17 @@ import useFeatures from '../../common/util/useFeatures';
 import MenuItem from '../../common/components/MenuItem';
 import { makeStyles } from 'tss-react/mui';
 
-const useStyles = makeStyles()((theme) => ({
-  card: {
-    backgroundColor: theme.palette.background.paper,
+const useStyles = makeStyles()(() => ({
+    card: {
+    backgroundColor: '#ffffff',
     borderRadius: 16,
-    padding: theme.spacing(1),
-    margin: theme.spacing(2),
-    boxShadow: theme.palette.mode === 'dark'
-      ? '0 2px 8px rgba(0,0,0,0.4)'
-      : '0 2px 8px rgba(0,0,0,0.08)',
+    padding: 8,
+    margin: 16,
+    boxShadow: '0 2px 8px rgba(0,0,0,0.12)',
   },
 }));
 
-const SettingsMenu = () => {
+  const SettingsMenu = () => {
   const { classes } = useStyles();
   const t = useTranslation();
   const location = useLocation();
