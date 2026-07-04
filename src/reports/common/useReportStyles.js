@@ -12,6 +12,7 @@ export default makeStyles()((theme) => ({
   },
   containerMain: {
     overflow: 'auto',
+    backgroundColor: '#f5f5f5',
   },
   header: {
     position: 'sticky',
@@ -35,6 +36,13 @@ export default makeStyles()((theme) => ({
     flexWrap: 'wrap',
     gap: theme.spacing(2),
     padding: theme.spacing(3, 2, 2),
+    backgroundColor: '#ffffff',
+    margin: theme.spacing(1.5),
+    borderRadius: 12,
+    boxShadow: '0 1px 4px rgba(0,0,0,0.15)',
+    '& .MuiOutlinedInput-root': {
+      borderRadius: 8,
+    },
     '@media print': {
       display: 'none !important',
     },
@@ -50,6 +58,7 @@ export default makeStyles()((theme) => ({
   },
   filterButton: {
     flexGrow: 1,
+    borderRadius: 8,
   },
   chart: {
     flexGrow: 1,
