@@ -5,6 +5,7 @@ export default makeStyles()((theme) => ({
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
+    backgroundColor: '#f5f5f5',
   },
   containerMap: {
     flexBasis: 'var(--report-map-height, 40%)',
@@ -13,6 +14,20 @@ export default makeStyles()((theme) => ({
   containerMain: {
     overflow: 'auto',
     backgroundColor: '#f5f5f5',
+    flexGrow: 1,
+    '& table': {
+      backgroundColor: '#ffffff',
+    },
+    '& .MuiTableHead-root': {
+      backgroundColor: '#0d47a1',
+    },
+    '& .MuiTableCell-head': {
+      color: '#ffffff',
+      fontWeight: 600,
+    },
+    '& .MuiTableCell-body': {
+      color: '#212121',
+    },
   },
   header: {
     position: 'sticky',
@@ -42,6 +57,17 @@ export default makeStyles()((theme) => ({
     boxShadow: '0 1px 4px rgba(0,0,0,0.15)',
     '& .MuiOutlinedInput-root': {
       borderRadius: 8,
+      backgroundColor: '#ffffff',
+      color: '#212121',
+    },
+    '& .MuiOutlinedInput-notchedOutline': {
+      borderColor: '#c4c4c4',
+    },
+    '& .MuiInputLabel-root': {
+      color: '#666666',
+    },
+    '& .MuiSvgIcon-root': {
+      color: '#666666',
     },
     '@media print': {
       display: 'none !important',
