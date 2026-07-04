@@ -2,22 +2,21 @@ import { makeStyles } from 'tss-react/mui';
 import { ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 import { Link } from 'react-router-dom';
 
-const useStyles = makeStyles()((theme) => ({
+const useStyles = makeStyles()(() => ({
   menuItem: {
     borderRadius: 12,
     marginBottom: 4,
     paddingTop: 10,
     paddingBottom: 10,
     '&:hover': {
-      backgroundColor: theme.palette.mode === 'dark'
-        ? 'rgba(255, 255, 255, 0.08)'
-        : 'rgba(33, 150, 243, 0.06)',
+      backgroundColor: 'rgba(33, 150, 243, 0.06)',
     },
-  },
-  menuItemSelected: {
-    backgroundColor: theme.palette.mode === 'dark'
-      ? 'rgba(255, 255, 255, 0.16)'
-      : 'rgba(33, 150, 243, 0.10)',
+    '&.Mui-selected': {
+      backgroundColor: 'rgba(33, 150, 243, 0.12) !important',
+    },
+    '&.Mui-selected:hover': {
+      backgroundColor: 'rgba(33, 150, 243, 0.18) !important',
+    },
   },
   iconWrapper: {
     display: 'flex',
@@ -36,18 +35,19 @@ const useStyles = makeStyles()((theme) => ({
   },
   menuItemText: {
     whiteSpace: 'nowrap',
+    color: '#212121',
   },
 }));
 
 const MenuItem = ({ title, link, icon, selected }) => {
-  const { classes, cx } = useStyles();
+  const { classes } = useStyles();
   return (
     <ListItemButton
       key={link}
       component={Link}
       to={link}
       selected={selected}
-      className={cx(classes.menuItem, selected && classes.menuItemSelected)}
+      className={classes.menuItem}
     >
       <ListItemIcon>
         <div className={classes.iconWrapper}>{icon}</div>
