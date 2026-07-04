@@ -10,14 +10,14 @@ const useStyles = makeStyles()((theme) => ({
     paddingBottom: 10,
     '&:hover': {
       backgroundColor: theme.palette.mode === 'dark'
-        ? 'rgba(76, 175, 80, 0.10)'
-        : 'rgba(76, 175, 80, 0.06)',
+        ? 'rgba(255, 255, 255, 0.08)'
+        : 'rgba(33, 150, 243, 0.06)',
     },
   },
   menuItemSelected: {
     backgroundColor: theme.palette.mode === 'dark'
-      ? 'rgba(76, 175, 80, 0.18)'
-      : 'rgba(76, 175, 80, 0.10)',
+      ? 'rgba(255, 255, 255, 0.16)'
+      : 'rgba(33, 150, 243, 0.10)',
   },
   iconWrapper: {
     display: 'flex',
@@ -27,7 +27,7 @@ const useStyles = makeStyles()((theme) => ({
     height: 40,
     minWidth: 40,
     borderRadius: '50%',
-    backgroundColor: '#4CAF50',
+    backgroundColor: '#2196F3',
     color: '#fff',
     marginRight: 12,
     '& svg': {
