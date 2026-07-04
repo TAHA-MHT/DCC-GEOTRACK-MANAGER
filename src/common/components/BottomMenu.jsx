@@ -139,6 +139,11 @@ const BottomMenu = () => {
           '& .Mui-selected': { color: '#ffffff' },
         }}
       >
+       <BottomNavigationAction
+          label="Dashboard"
+          icon={<DashboardIcon />}
+          value="dashboard"
+      />
         <BottomNavigationAction
           label={t('mapTitle')}
           icon={
