@@ -46,11 +46,11 @@ const useStyles = makeStyles()((theme, { miniVariant }) => ({
     },
   },
   mobileDrawer: {
-    width: theme.dimensions.drawerWidthTablet,
-    '@media print': {
-      display: 'none',
-    },
+  width: '100%',
+  '@media print': {
+    display: 'none',
   },
+},
   mobileToolbar: {
     zIndex: 1,
     '@media print': {
