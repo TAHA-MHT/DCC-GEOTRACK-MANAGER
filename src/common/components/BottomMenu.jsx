@@ -94,10 +94,10 @@ const BottomMenu = () => {
 
   const handleSelection = (event, value) => {
     switch (value) {
-      case 'map':
-        navigate('/');
+  case 'map':
+        navigate('/map');
         break;
-      case 'reports': {
+  case 'reports': {
         let id = selectedDeviceId;
         if (id == null) {
           const deviceIds = Object.keys(devices);
