@@ -1,20 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from 'tss-react/mui';
-import {
-  IconButton,
-  Tooltip,
-  Avatar,
-  ListItemAvatar,
-  ListItemText,
-  ListItemButton,
-  Typography,
-} from '@mui/material';
-import BatteryFullIcon from '@mui/icons-material/BatteryFull';
-import BatteryChargingFullIcon from '@mui/icons-material/BatteryChargingFull';
-import Battery60Icon from '@mui/icons-material/Battery60';
-import BatteryCharging60Icon from '@mui/icons-material/BatteryCharging60';
-import Battery20Icon from '@mui/icons-material/Battery20';
-import BatteryCharging20Icon from '@mui/icons-material/BatteryCharging20';
+import { Box, IconButton, Tooltip, Typography } from '@mui/material';
+import GpsFixedIcon from '@mui/icons-material/GpsFixed';
+import StraightenIcon from '@mui/icons-material/Straighten';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import SpeedIcon from '@mui/icons-material/Speed';
+import MyLocationIcon from '@mui/icons-material/MyLocation';
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import DashboardIcon from '@mui/icons-material/Dashboard';
 import ErrorIcon from '@mui/icons-material/Error';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
@@ -22,12 +15,9 @@ import { devicesActions } from '../store';
 import {
   formatAlarm,
   formatBoolean,
-  formatPercentage,
   formatStatus,
-  getStatusColor,
 } from '../common/util/formatter';
 import { useTranslation } from '../common/components/LocalizationProvider';
-import { mapIconKey, mapIcons } from '../map/core/preloadImages';
 import { useAdministrator } from '../common/util/permissions';
 import EngineIcon from '../resources/images/data/engine.svg?react';
 import { useAttributePreference } from '../common/util/preferences';
@@ -37,36 +27,98 @@ import MotionBar from './components/MotionBar';
 
 dayjs.extend(relativeTime);
 
+const STATUS_COLORS = {
+  stopped: '#e53935',
+  online: '#43a047',
+  moving: '#43a047',
+  idle: '#fb8c00',
+  offline: '#9e9e9e',
+  unknown: '#9e9e9e',
+};
+
 const useStyles = makeStyles()((theme) => ({
-  icon: {
-    width: '25px',
-    height: '25px',
-    filter: 'brightness(0) invert(1)',
+  card: {
+    margin: theme.spacing(1, 1.5),
+    borderRadius: 12,
+    backgroundColor: '#ffffff',
+    boxShadow: '0 1px 4px rgba(0,0,0,0.15)',
+    overflow: 'hidden',
+    cursor: 'pointer',
   },
-  batteryText: {
-    fontSize: '0.75rem',
-    fontWeight: 'normal',
-    lineHeight: '0.875rem',
+  selected: {
+    boxShadow: `0 0 0 2px ${theme.palette.primary.main}`,
+  },
+  disabled: {
+    opacity: 0.5,
+  },
+  header: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: theme.spacing(1.5, 2),
+  },
+  plate: {
+    fontWeight: 700,
+    fontSize: '1rem',
+  },
+  statusText: {
+    fontWeight: 600,
+    fontSize: '0.8rem',
+  },
+  statsRow: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    padding: theme.spacing(0, 1.5, 1.5),
+    gap: theme.spacing(0.5),
+  },
+  statItem: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    flex: 1,
+  },
+  statIcon: {
+    width: 22,
+    height: 22,
+    marginBottom: 2,
+  },
+  statLabel: {
+    fontSize: '0.65rem',
+    color: theme.palette.text.secondary,
+    textAlign: 'center',
+  },
+  statValue: {
+    fontSize: '0.7rem',
+    fontWeight: 600,
+    textAlign: 'center',
   },
   success: {
     color: theme.palette.success.main,
   },
-  warning: {
-    color: theme.palette.warning.main,
+  neutral: {
+    color: theme.palette.neutral.main,
   },
   error: {
     color: theme.palette.error.main,
   },
-  neutral: {
-    color: theme.palette.neutral.main,
+  actionsRow: {
+    display: 'flex',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    borderTop: '1px solid rgba(0,0,0,0.08)',
+    padding: theme.spacing(0.5, 0),
   },
-  selected: {
-    backgroundColor: theme.palette.action.selected,
+  actionButton: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    fontSize: '0.65rem',
+    color: theme.palette.text.secondary,
   },
 }));
 
 const DeviceRow = ({ devices, index, style }) => {
-  const { classes } = useStyles();
+  const { classes, cx } = useStyles();
   const dispatch = useDispatch();
   const t = useTranslation();
 
@@ -95,104 +147,111 @@ const DeviceRow = ({ devices, index, style }) => {
   };
 
   const primaryValue = resolveFieldValue(devicePrimary);
-  const secondaryValue = resolveFieldValue(deviceSecondary);
+  void deviceSecondary;
 
-  const secondaryText = () => {
-    let status;
-    if (item.status === 'online' || !item.lastUpdate) {
-      status = formatStatus(item.status, t);
-    } else {
-      status = dayjs(item.lastUpdate).fromNow();
+  const status = item.status === 'online' || !item.lastUpdate
+    ? formatStatus(item.status, t)
+    : dayjs(item.lastUpdate).fromNow();
+
+  const statusColor = STATUS_COLORS[item.status] || STATUS_COLORS.unknown;
+
+  const odometerKm = position?.attributes?.totalDistance
+    ? Math.round(position.attributes.totalDistance / 1000)
+    : null;
+  const speedKmh = position?.speed ? Math.round(position.speed * 1.852) : 0;
+  const engineHours = position?.attributes?.hours
+    ? Math.round(position.attributes.hours / 3600000)
+    : 0;
+
+  const disabled = !admin && item.disabled;
+  const selected = selectedDeviceId === item.id;
+
+  const handleSelect = () => {
+    if (!disabled) {
+      dispatch(devicesActions.selectId(item.id));
     }
-    return (
-      <>
-        {secondaryValue && (
-          <>
-            {secondaryValue}
-            {' • '}
-          </>
-        )}
-        <span className={classes[getStatusColor(item.status)]}>{status}</span>
-      </>
-    );
   };
 
   return (
     <div style={style}>
-      <ListItemButton
-        key={item.id}
-        onClick={() => dispatch(devicesActions.selectId(item.id))}
-        disabled={!admin && item.disabled}
-        selected={selectedDeviceId === item.id}
-        className={selectedDeviceId === item.id ? classes.selected : null}
+      <Box
+        className={cx(classes.card, selected && classes.selected, disabled && classes.disabled)}
+        onClick={handleSelect}
       >
-        <ListItemAvatar>
-          <Avatar>
-            <img className={classes.icon} src={mapIcons[mapIconKey(item.category)]} alt="" />
-          </Avatar>
-        </ListItemAvatar>
-        <ListItemText
-          primary={primaryValue}
-          secondary={secondaryText()}
-          slots={{
-            primary: Typography,
-            secondary: Typography,
-          }}
-          slotProps={{
-            primary: { noWrap: true },
-            secondary: { noWrap: true },
-          }}
-        />
-        {position && (
-          <>
-            {position.attributes.hasOwnProperty('alarm') && (
-              <Tooltip title={`${t('eventAlarm')}: ${formatAlarm(position.attributes.alarm, t)}`}>
-                <IconButton size="small">
-                  <ErrorIcon fontSize="small" className={classes.error} />
-                </IconButton>
-              </Tooltip>
-            )}
-            {position.attributes.hasOwnProperty('ignition') && (
-              <Tooltip
-                title={`${t('positionIgnition')}: ${formatBoolean(position.attributes.ignition, t)}`}
-              >
-                <IconButton size="small">
-                  {position.attributes.ignition ? (
-                    <EngineIcon width={20} height={20} className={classes.success} />
-                  ) : (
-                    <EngineIcon width={20} height={20} className={classes.neutral} />
-                  )}
-                </IconButton>
-              </Tooltip>
-            )}
-            {position.attributes.hasOwnProperty('batteryLevel') && (
-              <Tooltip
-                title={`${t('positionBatteryLevel')}: ${formatPercentage(position.attributes.batteryLevel)}`}
-              >
-                <IconButton size="small">
-                  {(position.attributes.batteryLevel > 70 &&
-                    (position.attributes.charge ? (
-                      <BatteryChargingFullIcon fontSize="small" className={classes.success} />
-                    ) : (
-                      <BatteryFullIcon fontSize="small" className={classes.success} />
-                    ))) ||
-                    (position.attributes.batteryLevel > 30 &&
-                      (position.attributes.charge ? (
-                        <BatteryCharging60Icon fontSize="small" className={classes.warning} />
-                      ) : (
-                        <Battery60Icon fontSize="small" className={classes.warning} />
-                      ))) ||
-                    (position.attributes.charge ? (
-                      <BatteryCharging20Icon fontSize="small" className={classes.error} />
-                    ) : (
-                      <Battery20Icon fontSize="small" className={classes.error} />
-                    ))}
-                </IconButton>
-              </Tooltip>
-            )}
-          </>
+        <div className={classes.header}>
+          <Typography className={classes.plate}>{primaryValue}</Typography>
+          <Typography className={classes.statusText} style={{ color: statusColor }}>
+            {status}
+          </Typography>
+        </div>
+
+        <div className={classes.statsRow}>
+          <div className={classes.statItem}>
+            <EngineIcon
+              width={20}
+              height={20}
+              className={position?.attributes?.ignition ? classes.success : classes.neutral}
+            />
+            <Typography className={classes.statLabel}>{t('positionIgnition')}</Typography>
+            <Typography className={classes.statValue}>
+              {formatBoolean(position?.attributes?.ignition, t)}
+            </Typography>
+          </div>
+          <div className={classes.statItem}>
+            <GpsFixedIcon className={cx(classes.statIcon, position ? classes.success : classes.neutral)} />
+            <Typography className={classes.statLabel}>GPS</Typography>
+            <Typography className={classes.statValue}>{position ? 'On' : 'Off'}</Typography>
+          </div>
+          <div className={classes.statItem}>
+            <StraightenIcon className={cx(classes.statIcon, classes.neutral)} />
+            <Typography className={classes.statLabel}>Odometer</Typography>
+            <Typography className={classes.statValue}>
+              {odometerKm !== null ? `${odometerKm}km` : '-'}
+            </Typography>
+          </div>
+          <div className={classes.statItem}>
+            <SpeedIcon className={cx(classes.statIcon, classes.neutral)} />
+            <Typography className={classes.statLabel}>Speed</Typography>
+            <Typography className={classes.statValue}>{`${speedKmh}km`}</Typography>
+          </div>
+          <div className={classes.statItem}>
+            <AccessTimeIcon className={cx(classes.statIcon, classes.neutral)} />
+            <Typography className={classes.statLabel}>Engine hour</Typography>
+            <Typography className={classes.statValue}>{`${engineHours}h`}</Typography>
+          </div>
+        </div>
+
+        {position?.attributes?.hasOwnProperty('alarm') && (
+          <Box display="flex" justifyContent="center" pb={1}>
+            <Tooltip title={`${t('eventAlarm')}: ${formatAlarm(position.attributes.alarm, t)}`}>
+              <IconButton size="small">
+                <ErrorIcon fontSize="small" className={classes.error} />
+              </IconButton>
+            </Tooltip>
+          </Box>
         )}
-      </ListItemButton>
+
+        <div className={classes.actionsRow}>
+          <div className={classes.actionButton}>
+            <IconButton size="small" color="inherit">
+              <MyLocationIcon fontSize="small" />
+            </IconButton>
+            Live Tracking
+          </div>
+          <div className={classes.actionButton}>
+            <IconButton size="small" color="inherit">
+              <PlayArrowIcon fontSize="small" />
+            </IconButton>
+            Playback
+          </div>
+          <div className={classes.actionButton}>
+            <IconButton size="small" color="inherit">
+              <DashboardIcon fontSize="small" />
+            </IconButton>
+            Dashboard
+          </div>
+        </div>
+      </Box>
     </div>
   );
 };
