@@ -14,6 +14,7 @@ import {
 import DescriptionIcon from '@mui/icons-material/Description';
 import SettingsIcon from '@mui/icons-material/Settings';
 import MapIcon from '@mui/icons-material/Map';
+import DashboardIcon from '@mui/icons-material/Dashboard';
 import PersonIcon from '@mui/icons-material/Person';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import { sessionActions } from '../../store';
@@ -94,10 +95,14 @@ const BottomMenu = () => {
 
   const handleSelection = (event, value) => {
     switch (value) {
-  case 'map':
+ case 'dashboard':
+        navigate('/');
+        break;
+ case 'map':
         navigate('/map');
         break;
-  case 'reports': {
+        
+ case 'reports': {
         let id = selectedDeviceId;
         if (id == null) {
           const deviceIds = Object.keys(devices);
