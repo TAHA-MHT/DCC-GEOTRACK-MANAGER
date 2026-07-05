@@ -121,6 +121,7 @@ const useStyles = makeStyles()((theme) => ({
 const DeviceRow = ({ devices, index, style }) => {
   const { classes, cx } = useStyles();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const t = useTranslation();
 
   const admin = useAdministrator();
