@@ -143,8 +143,8 @@ const BottomMenu = () => {
         left: 16,
         width: 56,
         height: 56,
-        backgroundColor: '#4CAF50',
-        color: '#fff',
+        backgroundColor: '#FF6B00',
+        '&:hover': { backgroundColor: '#E65100' },
         boxShadow: '0 4px 10px rgba(0,0,0,0.3)',
         '&:hover': { backgroundColor: '#43A047' },
       }}
