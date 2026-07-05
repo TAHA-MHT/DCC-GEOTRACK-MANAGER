@@ -52,12 +52,14 @@ const useStyles = makeStyles()((theme, { miniVariant }) => ({
   },
 },
   mobileToolbar: {
-    zIndex: 1,
-    '@media print': {
-      display: 'none',
-    },
+  zIndex: 1,
+  backgroundColor: '#0d47a1',
+  color: '#ffffff',
+  '@media print': {
+    display: 'none',
   },
-  content: {
+},
+    content: {
     flexGrow: 1,
     alignItems: 'stretch',
     display: 'flex',
