@@ -26,6 +26,7 @@ const useStyles = makeStyles()(() => ({
 }));
 const ReportsMenu = () => {
   const t = useTranslation();
+  const { classes } = useStyles();
   const location = useLocation();
 
   const admin = useAdministrator();
