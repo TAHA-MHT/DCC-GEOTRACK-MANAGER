@@ -64,7 +64,7 @@ const useStyles = makeStyles()((theme, { miniVariant }) => ({
     alignItems: 'stretch',
     display: 'flex',
     flexDirection: 'column',
-    overflowY: 'auto',
+    overflowY:  '#ffffff',
   },
 }));
 
