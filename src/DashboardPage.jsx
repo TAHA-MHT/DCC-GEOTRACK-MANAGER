@@ -201,7 +201,7 @@ const DashboardPage = () => {
       <div
         key={key}
         className={classes.cardItem}
-        onClick={() => navigate('/map')}
+        onClick={() => navigate(`/map?status=${key}`)}
         style={{ cursor: 'pointer' }}
      >
             <div className={classes.card} style={{ backgroundColor: CATEGORY_COLORS[key] }}>
