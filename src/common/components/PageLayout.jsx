@@ -55,6 +55,12 @@ const useStyles = makeStyles()((theme, { miniVariant }) => ({
   zIndex: 1,
   backgroundColor: '#0d47a1',
   color: '#ffffff',
+  '& .MuiTypography-root': {
+    color: '#ffffff',
+  },
+  '& .MuiIconButton-root': {
+    color: '#ffffff',
+  },
   '@media print': {
     display: 'none',
   },
