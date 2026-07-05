@@ -198,7 +198,12 @@ const DashboardPage = () => {
       </Typography>
       <div className={classes.grid}>
         {cards.map(({ key, label }) => (
-          <div key={key} className={classes.cardItem}>
+      <div
+        key={key}
+        className={classes.cardItem}
+        onClick={() => navigate('/map')}
+        style={{ cursor: 'pointer' }}
+     >
             <div className={classes.card} style={{ backgroundColor: CATEGORY_COLORS[key] }}>
               <div className={classes.badge} style={{ color: CATEGORY_COLORS[key] }}>
                 {counts[key]}
