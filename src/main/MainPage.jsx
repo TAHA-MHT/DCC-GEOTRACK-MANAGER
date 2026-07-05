@@ -170,7 +170,7 @@ const displayedPositions = statusFilter
             <div className={classes.contentMap}>
               <Suspense fallback={null}>
                 <MainMap
-                  filteredPositions={filteredPositions}
+                  filteredPositions={displayedPositions}
                   selectedPosition={selectedPosition}
                   onEventsClick={onEventsClick}
                 />
@@ -182,7 +182,7 @@ const displayedPositions = statusFilter
             className={classes.contentList}
             style={devicesOpen ? {} : { visibility: 'hidden' }}
           >
-            <DeviceList devices={filteredDevices} />
+            <DeviceList devices={displayedDevices} />
           </Paper>
         </div>
         {desktop && (
