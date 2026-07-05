@@ -249,24 +249,7 @@ const handleDashboard = (event) => {
   </IconButton>
   Dashboard
 </div>
-<MyLocationIcon fontSize="small" />
-            </IconButton>
-            Live Tracking
-          </div>
-          <div className={classes.actionButton}>
-            <IconButton size="small" color="inherit">
-              <PlayArrowIcon fontSize="small" />
-            </IconButton>
-            Playback
-          </div>
-          <div className={classes.actionButton}>
-            <IconButton size="small" color="inherit">
-              <DashboardIcon fontSize="small" />
-            </IconButton>
-            Dashboard
-          </div>
-        </div>
-      </Box>
+</Box>
     </div>
   );
 };
