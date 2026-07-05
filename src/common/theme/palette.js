@@ -5,7 +5,6 @@ mode: 'light',
 background: {
   default: '#FFFFFF',
 },
- },
   primary: {
     main: '#FF6B00',
   },
