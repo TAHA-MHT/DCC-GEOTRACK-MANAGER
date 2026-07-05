@@ -112,7 +112,32 @@ const MainPage = () => {
     setFilteredDevices,
     setFilteredPositions,
   );
+const [searchParams] = useSearchParams();
+const statusFilter = searchParams.get('status');
 
+const categorize = (device, position) => {
+  if (device.expirationTime && new Date(device.expirationTime) < new Date()) {
+    return 'expired';
+  }
+  if (device.status === 'offline') return 'offline';
+  if (device.status === 'unknown') return 'notConnected';
+  if (position?.attributes?.motion) return 'moving';
+  if (position?.attributes?.ignition) return 'idle';
+  return 'stopped';
+};
+
+const displayedDevices = statusFilter
+  ? filteredDevices.filter(
+      (device) => categorize(device, positions[device.id]) === statusFilter,
+    )
+  : filteredDevices;
+
+const displayedPositions = statusFilter
+  ? filteredPositions.filter((position) => {
+      const device = filteredDevices.find((d) => d.id === position.deviceId);
+      return device && categorize(device, position) === statusFilter;
+    })
+  : filteredPositions;
   return (
     <div className={classes.root}>
       {desktop && (
