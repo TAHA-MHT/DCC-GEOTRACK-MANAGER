@@ -146,8 +146,7 @@ const BottomMenu = () => {
         backgroundColor: '#FF6B00',
         '&:hover': { backgroundColor: '#E65100' },
         boxShadow: '0 4px 10px rgba(0,0,0,0.3)',
-        '&:hover': { backgroundColor: '#43A047' },
-      }}
+    }}
     >
       <DashboardIcon />
     </IconButton>
