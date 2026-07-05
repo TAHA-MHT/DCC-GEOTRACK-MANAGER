@@ -20,7 +20,7 @@ import {
 } from '../common/util/formatter';
 import { useTranslation } from '../common/components/LocalizationProvider';
 import { useAdministrator } from '../common/util/permissions';
-import EngineIcon from '../resources/images/data/engine.svg?react';
+import EngineIcon from '../common/resources/images/data/engine.svg?react';
 import { useAttributePreference } from '../common/util/preferences';
 import GeofencesValue from '../common/components/GeofencesValue';
 import DriverValue from '../common/components/DriverValue';
@@ -76,12 +76,9 @@ const useStyles = makeStyles()((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    flex: 1,
   },
   statIcon: {
-    width: 22,
-    height: 22,
-    marginBottom: 2,
+    fontSize: '1.1rem',
   },
   statLabel: {
     fontSize: '0.65rem',
@@ -135,7 +132,7 @@ const DeviceRow = ({ devices, index, style }) => {
 
   const resolveFieldValue = (field) => {
     if (field === 'geofenceIds') {
-      const geofenceIds = position?.geofenceIds;
+      const geofenceIds = position?.attributes?.geofenceIds;
       return geofenceIds?.length ? <GeofencesValue geofenceIds={geofenceIds} /> : null;
     }
     if (field === 'driverUniqueId') {
@@ -173,22 +170,24 @@ const DeviceRow = ({ devices, index, style }) => {
       dispatch(devicesActions.selectId(item.id));
     }
   };
-const handleLiveTracking = (event) => {
-  event.stopPropagation();
-  dispatch(devicesActions.selectId(item.id));
-  navigate('/map');
-};
 
-const handlePlayback = (event) => {
-  event.stopPropagation();
-  navigate(`/replay?deviceId=${item.id}`);
-};
+  const handleLiveTracking = (event) => {
+    event.stopPropagation();
+    dispatch(devicesActions.selectId(item.id));
+    navigate('/map');
+  };
 
-const handleDashboard = (event) => {
-  event.stopPropagation();
-  dispatch(devicesActions.selectId(item.id));
-  navigate('/');
-};
+  const handlePlayback = (event) => {
+    event.stopPropagation();
+    navigate(`/replay?deviceId=${item.id}`);
+  };
+
+  const handleDashboard = (event) => {
+    event.stopPropagation();
+    dispatch(devicesActions.selectId(item.id));
+    navigate('/');
+  };
+
   return (
     <div style={style}>
       <Box
@@ -231,26 +230,44 @@ const handleDashboard = (event) => {
             <Typography className={classes.statLabel}>Speed</Typography>
             <Typography className={classes.statValue}>{`${speedKmh}km`}</Typography>
           </div>
-          <div className={classes.actionsRow}>
+          <div className={classes.statItem}>
+            <AccessTimeIcon className={cx(classes.statIcon, classes.neutral)} />
+            <Typography className={classes.statLabel}>Engine hour</Typography>
+            <Typography className={classes.statValue}>{`${engineHours}h`}</Typography>
+          </div>
+        </div>
+
+        {position?.attributes?.hasOwnProperty('alarm') && (
+          <Box display="flex" justifyContent="center" pb={1}>
+            <Tooltip title={`${t('eventAlarm')}: ${formatAlarm(position.attributes.alarm, t)}`}>
+              <IconButton size="small">
+                <ErrorIcon fontSize="small" className={classes.error} />
+              </IconButton>
+            </Tooltip>
+          </Box>
+        )}
+
+        <div className={classes.actionsRow}>
           <div className={classes.actionButton}>
-  <IconButton size="small" color="inherit" onClick={handleLiveTracking}>
-    <MyLocationIcon fontSize="small" />
-  </IconButton>
-  Live Tracking
-</div>
-<div className={classes.actionButton}>
-  <IconButton size="small" color="inherit" onClick={handlePlayback}>
-    <PlayArrowIcon fontSize="small" />
-  </IconButton>
-  Playback
-</div>
-<div className={classes.actionButton}>
-  <IconButton size="small" color="inherit" onClick={handleDashboard}>
-    <DashboardIcon fontSize="small" />
-  </IconButton>
-  Dashboard
-</div>
-</Box>
+            <IconButton size="small" color="inherit" onClick={handleLiveTracking}>
+              <MyLocationIcon fontSize="small" />
+            </IconButton>
+            Live Tracking
+          </div>
+          <div className={classes.actionButton}>
+            <IconButton size="small" color="inherit" onClick={handlePlayback}>
+              <PlayArrowIcon fontSize="small" />
+            </IconButton>
+            Playback
+          </div>
+          <div className={classes.actionButton}>
+            <IconButton size="small" color="inherit" onClick={handleDashboard}>
+              <DashboardIcon fontSize="small" />
+            </IconButton>
+            Dashboard
+          </div>
+        </div>
+      </Box>
     </div>
   );
 };
