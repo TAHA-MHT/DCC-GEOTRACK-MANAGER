@@ -231,6 +231,7 @@ const handleDashboard = (event) => {
             <Typography className={classes.statLabel}>Speed</Typography>
             <Typography className={classes.statValue}>{`${speedKmh}km`}</Typography>
           </div>
+          <div className={classes.actionsRow}>
           <div className={classes.actionButton}>
   <IconButton size="small" color="inherit" onClick={handleLiveTracking}>
     <MyLocationIcon fontSize="small" />
