@@ -158,7 +158,7 @@ const PageLayout = ({ menu, breadcrumbs, children }) => {
         </Drawer>
       )}
       {!desktop && (
-        <AppBar className={classes.mobileToolbar} position="static" color="inherit">
+        <AppBar className={classes.mobileToolbar} position="static" color="transparent">
           <Toolbar>
             <IconButton
               color="inherit"
