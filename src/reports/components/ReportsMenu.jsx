@@ -16,7 +16,14 @@ import { useLocation } from 'react-router-dom';
 import { useTranslation } from '../../common/components/LocalizationProvider';
 import { useAdministrator, useRestriction } from '../../common/util/permissions';
 import MenuItem from '../../common/components/MenuItem';
-
+const useStyles = makeStyles()(() => ({
+  card: {
+    backgroundColor: '#ffffff',
+    padding: 8,
+    margin: 0,
+    minHeight: '100vh',
+  },
+}));
 const ReportsMenu = () => {
   const t = useTranslation();
   const location = useLocation();
