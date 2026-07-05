@@ -132,7 +132,7 @@ const categorize = (device, position) => {
 const DashboardPage = () => {
   const { classes } = useStyles();
   const t = useTranslation();
-
+  const navigate = useNavigate();
   const devices = useSelector((state) => state.devices.items);
   const positions = useSelector((state) => state.session.positions);
 
