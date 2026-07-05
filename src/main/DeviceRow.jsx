@@ -173,7 +173,22 @@ const DeviceRow = ({ devices, index, style }) => {
       dispatch(devicesActions.selectId(item.id));
     }
   };
+const handleLiveTracking = (event) => {
+  event.stopPropagation();
+  dispatch(devicesActions.selectId(item.id));
+  navigate('/map');
+};
 
+const handlePlayback = (event) => {
+  event.stopPropagation();
+  navigate(`/replay?deviceId=${item.id}`);
+};
+
+const handleDashboard = (event) => {
+  event.stopPropagation();
+  dispatch(devicesActions.selectId(item.id));
+  navigate('/');
+};
   return (
     <div style={style}>
       <Box
