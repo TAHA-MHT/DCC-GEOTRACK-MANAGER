@@ -231,27 +231,25 @@ const handleDashboard = (event) => {
             <Typography className={classes.statLabel}>Speed</Typography>
             <Typography className={classes.statValue}>{`${speedKmh}km`}</Typography>
           </div>
-          <div className={classes.statItem}>
-            <AccessTimeIcon className={cx(classes.statIcon, classes.neutral)} />
-            <Typography className={classes.statLabel}>Engine hour</Typography>
-            <Typography className={classes.statValue}>{`${engineHours}h`}</Typography>
-          </div>
-        </div>
-
-        {position?.attributes?.hasOwnProperty('alarm') && (
-          <Box display="flex" justifyContent="center" pb={1}>
-            <Tooltip title={`${t('eventAlarm')}: ${formatAlarm(position.attributes.alarm, t)}`}>
-              <IconButton size="small">
-                <ErrorIcon fontSize="small" className={classes.error} />
-              </IconButton>
-            </Tooltip>
-          </Box>
-        )}
-
-        <div className={classes.actionsRow}>
           <div className={classes.actionButton}>
-            <IconButton size="small" color="inherit">
-              <MyLocationIcon fontSize="small" />
+  <IconButton size="small" color="inherit" onClick={handleLiveTracking}>
+    <MyLocationIcon fontSize="small" />
+  </IconButton>
+  Live Tracking
+</div>
+<div className={classes.actionButton}>
+  <IconButton size="small" color="inherit" onClick={handlePlayback}>
+    <PlayArrowIcon fontSize="small" />
+  </IconButton>
+  Playback
+</div>
+<div className={classes.actionButton}>
+  <IconButton size="small" color="inherit" onClick={handleDashboard}>
+    <DashboardIcon fontSize="small" />
+  </IconButton>
+  Dashboard
+</div>
+<MyLocationIcon fontSize="small" />
             </IconButton>
             Live Tracking
           </div>
