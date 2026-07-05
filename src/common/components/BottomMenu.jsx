@@ -205,7 +205,6 @@ const BottomMenu = () => {
     </Menu>
   </Paper>
 );
-    
 };
 
 export default BottomMenu;
