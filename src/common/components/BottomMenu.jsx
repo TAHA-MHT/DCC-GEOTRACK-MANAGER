@@ -134,65 +134,78 @@ const BottomMenu = () => {
   };
 
   return (
-    <Paper square elevation={3} style={{ backgroundColor: '#0d47a1' }}>
-      <BottomNavigation
-        value={currentSelection()}
-        onChange={handleSelection}
-        showLabels
-        sx={{
-          backgroundColor: 'transparent',
-          '& .MuiBottomNavigationAction-root': { color: '#bbdefb' },
-          '& .Mui-selected': { color: '#ffffff' },
-        }}
-      >
-       <BottomNavigationAction
-          label="Dashboard"
-          icon={<DashboardIcon />}
-          value="dashboard"
+  <Paper square elevation={3} style={{ backgroundColor: '#0d47a1', position: 'relative', paddingTop: 24 }}>
+    <IconButton
+      onClick={() => navigate('/')}
+      sx={{
+        position: 'absolute',
+        top: -24,
+        left: 16,
+        width: 56,
+        height: 56,
+        backgroundColor: '#4CAF50',
+        color: '#fff',
+        boxShadow: '0 4px 10px rgba(0,0,0,0.3)',
+        '&:hover': { backgroundColor: '#43A047' },
+      }}
+    >
+      <DashboardIcon />
+    </IconButton>
+    <BottomNavigation
+      value={currentSelection()}
+      onChange={handleSelection}
+      showLabels
+      sx={{
+        backgroundColor: 'transparent',
+        paddingBottom: 1,
+        '& .MuiBottomNavigationAction-root': { color: '#bbdefb', minWidth: 0, paddingLeft: 4 },
+        '& .Mui-selected': { color: '#ffffff' },
+      }}
+    >
+      <BottomNavigationAction
+        label={t('mapTitle')}
+        icon={(
+          <Badge color="error" variant="dot" overlap="circular" invisible={socket !== false}>
+            <MapIcon />
+          </Badge>
+        )}
+        value="map"
       />
+      {!disableReports && (
         <BottomNavigationAction
-          label={t('mapTitle')}
-          icon={
-            <Badge color="error" variant="dot" overlap="circular" invisible={socket !== false}>
-              <MapIcon />
-            </Badge>
-          }
-          value="map"
+          label={t('reportTitle')}
+          icon={<DescriptionIcon />}
+          value="reports"
         />
-        {!disableReports && (
-          <BottomNavigationAction
-            label={t('reportTitle')}
-            icon={<DescriptionIcon />}
-            value="reports"
-          />
-        )}
-        {!readonly && (
-          <BottomNavigationAction
-            label={t('settingsTitle')}
-            icon={<SettingsIcon />}
-            value="settings"
-          />
-        )}
-        {readonly ? (
-          <BottomNavigationAction
-            label={t('loginLogout')}
-            icon={<ExitToAppIcon />}
-            value="logout"
-          />
-        ) : (
-          <BottomNavigationAction label={t('settingsUser')} icon={<PersonIcon />} value="account" />
-        )}
-      </BottomNavigation>
-      <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={() => setAnchorEl(null)}>
-        <MenuItem onClick={handleAccount}>
-          <Typography color="textPrimary">{t('settingsUser')}</Typography>
-        </MenuItem>
-        <MenuItem onClick={handleLogout}>
-          <Typography color="error">{t('loginLogout')}</Typography>
-        </MenuItem>
-      </Menu>
-    </Paper>
-  );
+      )}
+      {!readonly && (
+        <BottomNavigationAction
+          label={t('settingsTitle')}
+          icon={<SettingsIcon />}
+          value="settings"
+        />
+      )}
+      {readonly ? (
+        <BottomNavigationAction
+          label={t('loginLogout')}
+          icon={<ExitToAppIcon />}
+          value="logout"
+        />
+      ) : (
+        <BottomNavigationAction label={t('settingsUser')} icon={<PersonIcon />} value="account" />
+      )}
+    </BottomNavigation>
+    <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={() => setAnchorEl(null)}>
+      <MenuItem onClick={handleAccount}>
+        <Typography color="textPrimary">{t('settingsUser')}</Typography>
+      </MenuItem>
+      <MenuItem onClick={handleLogout}>
+        <Typography color="error">{t('loginLogout')}</Typography>
+      </MenuItem>
+    </Menu>
+  </Paper>
+);
+    
 };
 
 export default BottomMenu;
