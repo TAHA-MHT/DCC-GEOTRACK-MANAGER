@@ -88,10 +88,10 @@ const PageTitle = ({ breadcrumbs }) => {
           {t(breadcrumb)}
         </Typography>
       ))}
-      <Typography variant="h6" color="textPrimary">
+      <Typography variant="h6" color="inherit">
         {t(breadcrumbs[breadcrumbs.length - 1])}
       </Typography>
-    </Breadcrumbs>
+     </Breadcrumbs>
   );
 };
 
