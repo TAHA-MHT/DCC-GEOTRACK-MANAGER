@@ -143,7 +143,7 @@ const displayedPositions = statusFilter
       {desktop && (
         <Suspense fallback={null}>
           <MainMap
-            filteredPositions={filteredPositions}
+            filteredPositions={displayedPositions}
             selectedPosition={selectedPosition}
             onEventsClick={onEventsClick}
           />
