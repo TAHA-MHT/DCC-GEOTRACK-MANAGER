@@ -66,6 +66,7 @@ const useStyles = makeStyles()((theme) => ({
     gridTemplateColumns: 'repeat(3, 1fr)',
     gap: theme.spacing(2),
     marginTop: theme.spacing(2),
+    paddingBottom: 40,
   },
   card: {
     position: 'relative',
