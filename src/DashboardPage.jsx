@@ -39,8 +39,7 @@ const useStyles = makeStyles()((theme) => ({
     height: 220,
   },
 },
-    },
-  donutInner: {
+    donutInner: {
     width: '70%',
     height: '70%',
     borderRadius: '50%',
