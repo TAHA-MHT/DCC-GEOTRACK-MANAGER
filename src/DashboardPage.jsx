@@ -28,13 +28,18 @@ const useStyles = makeStyles()((theme) => ({
     padding: theme.spacing(3, 0),
   },
   donut: {
+  width: 160,
+  height: 160,
+  borderRadius: '50%',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  [theme.breakpoints.up('sm')]: {
     width: 220,
     height: 220,
-    borderRadius: '50%',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
+},
+    },
   donutInner: {
     width: '70%',
     height: '70%',
