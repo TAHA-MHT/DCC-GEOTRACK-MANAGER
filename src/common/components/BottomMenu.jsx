@@ -143,7 +143,7 @@ const BottomMenu = () => {
         onClick={() => navigate('/')}
         sx={{
           position: 'absolute',
-          top: -24,
+          top: -20,
           left: 16,
           width: 56,
           height: 56,
