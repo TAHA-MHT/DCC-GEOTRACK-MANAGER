@@ -46,31 +46,31 @@ const useStyles = makeStyles()((theme, { miniVariant }) => ({
     },
   },
   mobileDrawer: {
-  width: '100%',
-  '@media print': {
-    display: 'none',
+    width: '100%',
+    '@media print': {
+      display: 'none',
+    },
   },
-},
   mobileToolbar: {
-  zIndex: 1,
-  backgroundColor: '#0d47a1',
-  color: '#ffffff',
-  '& .MuiTypography-root': {
+    zIndex: 1,
+    backgroundColor: '#0d47a1',
     color: '#ffffff',
+    '& .MuiTypography-root': {
+      color: '#ffffff',
+    },
+    '& .MuiIconButton-root': {
+      color: '#ffffff',
+    },
+    '@media print': {
+      display: 'none',
+    },
   },
-  '& .MuiIconButton-root': {
-    color: '#ffffff',
-  },
-  '@media print': {
-    display: 'none',
-  },
-},
-    content: {
+  content: {
     flexGrow: 1,
     alignItems: 'stretch',
     display: 'flex',
     flexDirection: 'column',
-    overflowY:  '#ffffff',
+    overflowY: '#ffffff',
   },
 }));
 
@@ -97,7 +97,7 @@ const PageTitle = ({ breadcrumbs }) => {
       <Typography variant="h6" color="inherit">
         {t(breadcrumbs[breadcrumbs.length - 1])}
       </Typography>
-     </Breadcrumbs>
+    </Breadcrumbs>
   );
 };
 

@@ -23,7 +23,7 @@ import MenuItem from '../../common/components/MenuItem';
 import { makeStyles } from 'tss-react/mui';
 
 const useStyles = makeStyles()(() => ({
-    card: {
+  card: {
     backgroundColor: '#ffffff',
     borderRadius: 0,
     padding: 8,
@@ -32,7 +32,7 @@ const useStyles = makeStyles()(() => ({
   },
 }));
 
-  const SettingsMenu = () => {
+const SettingsMenu = () => {
   const { classes } = useStyles();
   const t = useTranslation();
   const location = useLocation();
@@ -164,8 +164,8 @@ const useStyles = makeStyles()(() => ({
                 link="/settings/users"
                 icon={<PeopleIcon />}
                 selected={
-                  location.pathname.startsWith('/settings/user')
-                  && location.pathname !== `/settings/user/${userId}`
+                  location.pathname.startsWith('/settings/user') &&
+                  location.pathname !== `/settings/user/${userId}`
                 }
               />
             </List>

@@ -6,7 +6,8 @@ body > a {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
 }
-html, body {
+html,
+body {
   height: 100%;
   background: white;
 }

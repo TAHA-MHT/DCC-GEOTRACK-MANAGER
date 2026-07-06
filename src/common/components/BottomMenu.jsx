@@ -11,7 +11,7 @@ import {
   Badge,
   IconButton,
 } from '@mui/material';
-  
+
 import DescriptionIcon from '@mui/icons-material/Description';
 import SettingsIcon from '@mui/icons-material/Settings';
 import MapIcon from '@mui/icons-material/Map';
@@ -96,14 +96,14 @@ const BottomMenu = () => {
 
   const handleSelection = (event, value) => {
     switch (value) {
- case 'dashboard':
+      case 'dashboard':
         navigate('/');
         break;
- case 'map':
+      case 'map':
         navigate('/map');
         break;
-        
- case 'reports': {
+
+      case 'reports': {
         let id = selectedDeviceId;
         if (id == null) {
           const deviceIds = Object.keys(devices);
@@ -134,76 +134,80 @@ const BottomMenu = () => {
   };
 
   return (
-  <Paper square elevation={3} style={{ backgroundColor: '#0d47a1', position: 'relative', paddingTop: 24 }}>
-    <IconButton
-      onClick={() => navigate('/')}
-      sx={{
-        position: 'absolute',
-        top: -24,
-        left: 16,
-        width: 56,
-        height: 56,
-        backgroundColor: '#FF6B00',
-        '&:hover': { backgroundColor: '#E65100' },
-        boxShadow: '0 4px 10px rgba(0,0,0,0.3)',
-    }}
+    <Paper
+      square
+      elevation={3}
+      style={{ backgroundColor: '#0d47a1', position: 'relative', paddingTop: 24 }}
     >
-      <DashboardIcon />
-    </IconButton>
-    <BottomNavigation
-      value={currentSelection()}
-      onChange={handleSelection}
-      showLabels
-      sx={{
-        backgroundColor: 'transparent',
-        paddingBottom: 1,
-        '& .MuiBottomNavigationAction-root': { color: '#bbdefb', minWidth: 0, paddingLeft: 4 },
-        '& .Mui-selected': { color: '#ffffff' },
-      }}
-    >
-      <BottomNavigationAction
-        label={t('mapTitle')}
-        icon={(
-          <Badge color="error" variant="dot" overlap="circular" invisible={socket !== false}>
-            <MapIcon />
-          </Badge>
+      <IconButton
+        onClick={() => navigate('/')}
+        sx={{
+          position: 'absolute',
+          top: -24,
+          left: 16,
+          width: 56,
+          height: 56,
+          backgroundColor: '#FF6B00',
+          '&:hover': { backgroundColor: '#E65100' },
+          boxShadow: '0 4px 10px rgba(0,0,0,0.3)',
+        }}
+      >
+        <DashboardIcon />
+      </IconButton>
+      <BottomNavigation
+        value={currentSelection()}
+        onChange={handleSelection}
+        showLabels
+        sx={{
+          backgroundColor: 'transparent',
+          paddingBottom: 1,
+          '& .MuiBottomNavigationAction-root': { color: '#bbdefb', minWidth: 0, paddingLeft: 4 },
+          '& .Mui-selected': { color: '#ffffff' },
+        }}
+      >
+        <BottomNavigationAction
+          label={t('mapTitle')}
+          icon={
+            <Badge color="error" variant="dot" overlap="circular" invisible={socket !== false}>
+              <MapIcon />
+            </Badge>
+          }
+          value="map"
+        />
+        {!disableReports && (
+          <BottomNavigationAction
+            label={t('reportTitle')}
+            icon={<DescriptionIcon />}
+            value="reports"
+          />
         )}
-        value="map"
-      />
-      {!disableReports && (
-        <BottomNavigationAction
-          label={t('reportTitle')}
-          icon={<DescriptionIcon />}
-          value="reports"
-        />
-      )}
-      {!readonly && (
-        <BottomNavigationAction
-          label={t('settingsTitle')}
-          icon={<SettingsIcon />}
-          value="settings"
-        />
-      )}
-      {readonly ? (
-        <BottomNavigationAction
-          label={t('loginLogout')}
-          icon={<ExitToAppIcon />}
-          value="logout"
-        />
-      ) : (
-        <BottomNavigationAction label={t('settingsUser')} icon={<PersonIcon />} value="account" />
-      )}
-    </BottomNavigation>
-    <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={() => setAnchorEl(null)}>
-      <MenuItem onClick={handleAccount}>
-        <Typography color="textPrimary">{t('settingsUser')}</Typography>
-      </MenuItem>
-      <MenuItem onClick={handleLogout}>
-        <Typography color="error">{t('loginLogout')}</Typography>
-      </MenuItem>
-    </Menu>
-  </Paper>
-);
+        {!readonly && (
+          <BottomNavigationAction
+            label={t('settingsTitle')}
+            icon={<SettingsIcon />}
+            value="settings"
+          />
+        )}
+        {readonly ? (
+          <BottomNavigationAction
+            label={t('loginLogout')}
+            icon={<ExitToAppIcon />}
+            value="logout"
+          />
+        ) : (
+          <BottomNavigationAction label={t('settingsUser')} icon={<PersonIcon />} value="account" />
+        )}
+      </BottomNavigation>
+      <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={() => setAnchorEl(null)}>
+        <MenuItem onClick={handleAccount}>
+          <Typography color="textPrimary">{t('settingsUser')}</Typography>
+        </MenuItem>
+        <MenuItem onClick={handleLogout}>
+          <Typography color="error">{t('loginLogout')}</Typography>
+        </MenuItem>
+      </Menu>
+    </Paper>
+  );
 };
 
 export default BottomMenu;

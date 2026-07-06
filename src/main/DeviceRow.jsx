@@ -13,11 +13,7 @@ import ErrorIcon from '@mui/icons-material/Error';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { devicesActions } from '../store';
-import {
-  formatAlarm,
-  formatBoolean,
-  formatStatus,
-} from '../common/util/formatter';
+import { formatAlarm, formatBoolean, formatStatus } from '../common/util/formatter';
 import { useTranslation } from '../common/components/LocalizationProvider';
 import { useAdministrator } from '../common/util/permissions';
 import EngineIcon from '../resources/images/data/engine.svg?react';
@@ -148,9 +144,10 @@ const DeviceRow = ({ devices, index, style }) => {
   const primaryValue = resolveFieldValue(devicePrimary);
   void deviceSecondary;
 
-  const status = item.status === 'online' || !item.lastUpdate
-    ? formatStatus(item.status, t)
-    : dayjs(item.lastUpdate).fromNow();
+  const status =
+    item.status === 'online' || !item.lastUpdate
+      ? formatStatus(item.status, t)
+      : dayjs(item.lastUpdate).fromNow();
 
   const statusColor = STATUS_COLORS[item.status] || STATUS_COLORS.unknown;
 
@@ -214,7 +211,9 @@ const DeviceRow = ({ devices, index, style }) => {
             </Typography>
           </div>
           <div className={classes.statItem}>
-            <GpsFixedIcon className={cx(classes.statIcon, position ? classes.success : classes.neutral)} />
+            <GpsFixedIcon
+              className={cx(classes.statIcon, position ? classes.success : classes.neutral)}
+            />
             <Typography className={classes.statLabel}>GPS</Typography>
             <Typography className={classes.statValue}>{position ? 'On' : 'Off'}</Typography>
           </div>

@@ -1,10 +1,10 @@
 import { grey } from '@mui/material/colors';
 
 export default (darkMode) => ({
-mode: 'light',
-background: {
-  default: '#FFFFFF',
-},
+  mode: 'light',
+  background: {
+    default: '#FFFFFF',
+  },
   primary: {
     main: '#FF6B00',
   },

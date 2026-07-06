@@ -177,7 +177,7 @@ const DashboardPage = () => {
   ];
 
   return (
-      <div className={classes.page}>
+    <div className={classes.page}>
       <div className={classes.header}>DCC GEOTRACK</div>
       <Paper elevation={0} className={classes.donutWrapper} style={{ backgroundColor: '#fff' }}>
         <div className={classes.donut} style={{ background: gradient }}>
@@ -198,12 +198,12 @@ const DashboardPage = () => {
       </Typography>
       <div className={classes.grid}>
         {cards.map(({ key, label }) => (
-      <div
-        key={key}
-        className={classes.cardItem}
-        onClick={() => navigate(`/map?status=${key}`)}
-        style={{ cursor: 'pointer' }}
-     >
+          <div
+            key={key}
+            className={classes.cardItem}
+            onClick={() => navigate(`/map?status=${key}`)}
+            style={{ cursor: 'pointer' }}
+          >
             <div className={classes.card} style={{ backgroundColor: CATEGORY_COLORS[key] }}>
               <div className={classes.badge} style={{ color: CATEGORY_COLORS[key] }}>
                 {counts[key]}
