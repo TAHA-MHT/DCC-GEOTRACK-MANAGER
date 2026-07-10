@@ -3,6 +3,7 @@
   "outputDirectory": "build",
   "rewrites": [
     { "source": "/api/:path*", "destination": "https://demo.traccar.org/api/:path*" },
-    { "source": "/((?!.well-known).*)", "destination": "/index.html" }
+    { "source": "/.well-known/assetlinks.json", "destination": "/.well-known/assetlinks.json" },
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
