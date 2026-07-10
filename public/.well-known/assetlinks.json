@@ -1,0 +1,10 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.dccgeotrack.managerapp",
+    "sha256_cert_fingerprints": [
+      "C2:A9:B2:D6:8C:CB:54:98:83:1E:5E:9C:E3:2E:24:F5:74:ED:AB:BF:0F:83:B8:AE:53:29:6B:59:1C:0A:F3:82"
+    ]
+  }
+}]
