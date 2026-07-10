@@ -5,5 +5,13 @@
     { "source": "/api/:path*", "destination": "https://demo.traccar.org/api/:path*" },
     { "source": "/.well-known/assetlinks.json", "destination": "/assetlinks.json" },
     { "source": "/(.*)", "destination": "/index.html" }
+  ],
+  "headers": [
+    {
+      "source": "/.well-known/assetlinks.json",
+      "headers": [
+        { "key": "Content-Type", "value": "application/json" }
+      ]
+    }
   ]
 }
