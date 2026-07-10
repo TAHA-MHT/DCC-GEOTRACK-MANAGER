@@ -2,7 +2,8 @@
   "buildCommand": "npm run build",
   "outputDirectory": "build",
   "routes": [
-    { "src": "/.well-known/assetlinks.json", "dest": "/assetlinks.json", "headers": { "content-type": "application/json" } },
+    { "src": "/.well-known/assetlinks.json", "dest": "/assetlinks.json" },
+    { "handle": "filesystem" },
     { "src": "/api/(.*)", "dest": "https://demo.traccar.org/api/$1" },
     { "src": "/(.*)", "dest": "/index.html" }
   ]
